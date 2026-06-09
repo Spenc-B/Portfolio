@@ -25,10 +25,10 @@
 - Removed legacy `src/index.css`.
 - Updated app entry styling import flow in `src/main.jsx`.
 - Updated docs to match the new Sass-based setup:
-	- `README.md`
-	- `SETUP.md`
-	- `QUICK_START.md`
-	- `PROJECT_OVERVIEW.md`
+  - `README.md`
+  - `SETUP.md`
+  - `QUICK_START.md`
+  - `PROJECT_OVERVIEW.md`
 - Updated `package.json` and `package-lock.json` for Sass and dependency consistency.
 - Updated `src/pages/PreviousRolesPage.jsx` and `index.html` as part of final integration cleanup.
 
@@ -54,8 +54,8 @@
 
 - Ensured `sass` is present in `devDependencies`.
 - Ran install/build flow to verify compilation:
-	- `npm install`
-	- `npm run build`
+  - `npm install`
+  - `npm run build`
 
 ### 5. Update docs immediately
 

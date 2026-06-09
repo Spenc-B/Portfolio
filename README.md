@@ -1,4 +1,4 @@
-# 3D Portfolio - React & Three.js Learning Project
+# 3D Portfolio - React & Three.js Project
 
 Welcome! This is a comprehensive 3D portfolio built with **React** and **Three.js**. It's designed to teach you both **beginner-friendly** and **advanced** React concepts.
 
