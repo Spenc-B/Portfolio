@@ -9,13 +9,22 @@
    ============================================ */
 
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Navbar() {
   // State: is the mobile menu open or closed?
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Function to scroll to a specific section
   const scrollToSection = (id) => {
+    if (location.pathname !== '/') {
+      sessionStorage.setItem('scrollTarget', id);
+      navigate('/');
+      return;
+    }
+
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false); // Close menu after clicking
@@ -26,11 +35,11 @@ function Navbar() {
       <h1>Spencer Blackler - Web Developer</h1>
       
       <ul className="nav-links">
-        <li><a onClick={() => scrollToSection('hero')}>Home</a></li>
-        <li><a onClick={() => scrollToSection('about')}>About</a></li>
-        <li><a onClick={() => scrollToSection('skills')}>Skills</a></li>
-        <li><a onClick={() => scrollToSection('3d-scene')}>3D Scene</a></li>
-        <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/previous-roles">Previous Roles</Link></li>
+        <li><button type="button" className="nav-link-btn" onClick={() => scrollToSection('about')}>About</button></li>
+        <li><button type="button" className="nav-link-btn" onClick={() => scrollToSection('skills')}>Skills</button></li>
+        <li><button type="button" className="nav-link-btn" onClick={() => scrollToSection('contact')}>Contact</button></li>
       </ul>
     </nav>
   );
