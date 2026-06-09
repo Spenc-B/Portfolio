@@ -162,7 +162,7 @@ const skills = [
 ];
 ```
 
-**3. Colors** - Edit `src/index.css`
+**3. Colors** - Edit `src/index.scss`
 
 ```css
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

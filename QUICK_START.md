@@ -41,7 +41,7 @@ Navigate to `http://localhost:3000`
 │   │
 │   ├── App.jsx                  ← Main component (imports everything)
 │   ├── main.jsx                 ← Entry point
-│   └── index.css                ← Global styles
+│   └── index.scss               ← Global styles
 │
 ├── index.html                   ← HTML template
 ├── package.json                 ← Dependencies
@@ -175,7 +175,7 @@ Edit `src/components/simple/HeroSection.jsx`:
 
 ### Change Colors
 
-Edit `src/index.css`:
+Edit `src/index.scss`:
 
 ```css
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
