@@ -1,0 +1,9 @@
+{
+    "name": "spencer/contact-mailer",
+    "description": "PHP mailer backend for the portfolio contact form",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
