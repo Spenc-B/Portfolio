@@ -1,4 +1,4 @@
-# 3D Portfolio - React & Three.js Learning Project
+# 3D Portfolio - React & Three.js Project
 
 Welcome! This is a comprehensive 3D portfolio built with **React** and **Three.js**. It's designed to teach you both **beginner-friendly** and **advanced** React concepts.
 
@@ -20,7 +20,7 @@ src/
 │       └── SceneLights.jsx
 ├── App.jsx              # Main component
 ├── main.jsx             # Entry point
-└── index.css            # Global styles
+└── index.scss           # Global styles
 ```
 
 ---
@@ -209,7 +209,7 @@ Hooks are functions that let you use React features in functional components.
 
 ### Change Colors
 
-Edit `src/index.css` - look for color values like `#667eea`
+Edit `src/index.scss` - look for color values like `#667eea`
 
 ### Add More Skills
 

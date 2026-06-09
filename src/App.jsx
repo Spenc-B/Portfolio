@@ -10,44 +10,27 @@
    ============================================ */
 
 import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/ui/Navbar';
-import HeroSection from './components/ui/HeroSection';
-import AboutSection from './components/ui/AboutSection';
-import SkillsSection from './components/ui/SkillsSection';
-import ThreeDScene from './components/3d/ThreeDScene';
-import ContactSection from './components/ui/ContactSection';
 import Footer from './components/ui/Footer';
+import HomePage from './pages/HomePage';
+import PreviousRolesPage from './pages/PreviousRolesPage';
 
 function App() {
   return (
-    <div className="app">
-      {/* ========== UI COMPONENTS ========== */}
-      
-      {/* Navigation - basic React component */}
-      <Navbar />
-      
-      {/* Hero section - introduces the portfolio */}
-      <HeroSection />
-      
-      {/* About section - simple content display */}
-      <AboutSection />
-      
-      {/* Skills section - demonstrates .map() pattern */}
-      <SkillsSection />
+    <BrowserRouter>
+      <div className="app">
+        <Navbar />
 
-      {/* ========== 3D COMPONENT ========== */}
-      
-      {/* Interactive 3D scene with Three.js */}
-      <ThreeDScene />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/previous-roles" element={<PreviousRolesPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
 
-      {/* ========== MORE UI COMPONENTS ========== */}
-      
-      {/* Contact form - form handling with useState */}
-      <ContactSection />
-      
-      {/* Footer - simple footer component */}
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

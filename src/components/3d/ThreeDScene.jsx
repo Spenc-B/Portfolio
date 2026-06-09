@@ -18,62 +18,95 @@ function ThreeDScene() {
   const [interactionEnabled, setInteractionEnabled] = useState(false);
 
   return (
-    <section id="3d-scene">
-      <h2 style={{ 
-        textAlign: 'center', 
-        marginTop: '4rem', 
-        marginBottom: '2rem',
-        color: '#333'
-      }}>
-        Interactive 3D Scene
-      </h2>
-      
-      <div className="three-scene-container">
-        <button
-          className="scene-toggle-btn"
-          type="button"
-          onClick={() => setInteractionEnabled((prev) => !prev)}
-        >
-          {interactionEnabled ? 'Disable Interaction' : 'Enable Interaction'}
-        </button>
+    <section id="3d-scene" className="interactive-scene-section">
+      <div className="scene-shell">
+        <div className="scene-header">
+          <p className="scene-eyebrow">Featured Build</p>
+          <h2>Interactive 3D Workspace</h2>
+          <p>
+            This section highlights the web developer desk model as a live 3D
+            product showcase. It starts in cinematic auto-rotate mode, then
+            switches to full exploration when interaction is enabled.
+          </p>
 
-        <Canvas
-          style={{ 
-            width: '100%', 
-            height: '100%',
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)'
-          }}
-          camera={{ position: [0, 0, 5], fov: 75 }}
-        >
-          {/* Camera setup */}
-          <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-          
-          {/* Lighting for the scene */}
-          <SceneLights />
-          
-          {/* Our 3D object */}
-          <RotatingCube interactionEnabled={interactionEnabled} />
-          
-          {/* Orbit controls - allows user to rotate/zoom the scene */}
-          <OrbitControls 
-            enableZoom={interactionEnabled}
-            enablePan={interactionEnabled}
-            enableRotate={interactionEnabled}
-            autoRotate={!interactionEnabled}
-            autoRotateSpeed={0.8}
-          />
-        </Canvas>
-      </div>
+          <div className="scene-actions">
+            <span className="scene-status">
+              {interactionEnabled ? 'Interaction On' : 'Auto-Rotate Preview'}
+            </span>
+            <button
+              className="scene-toggle-btn"
+              type="button"
+              onClick={() => setInteractionEnabled((prev) => !prev)}
+            >
+              {interactionEnabled ? 'Return to Preview' : 'Enable Interaction'}
+            </button>
+          </div>
 
-      <div style={{ 
-        textAlign: 'center', 
-        padding: '2rem',
-        background: '#e2e8f0',
-        margin: '2rem 0'
-      }}>
-        <p style={{ fontSize: '1.1rem', color: '#475569' }}>
-          💡 <strong>Figure showcase mode:</strong> Interaction starts off so the model slowly auto-rotates by default. Enable interaction when you want to drag, zoom, and click the figure. To use your model, place it at <code>public/models/web_dev_desk.glb</code>.
-        </p>
+          <ul className="scene-feature-list">
+            <li>Single dedicated GLB model: web_dev_desk.glb</li>
+            <li>Smooth idle motion with subtle depth lighting</li>
+            <li>Interactive orbit, zoom, and pan on demand</li>
+          </ul>
+        </div>
+
+        <div className="three-scene-container">
+          <Canvas
+            shadows
+            dpr={[1, 1.5]}
+            style={{ width: '100%', height: '100%' }}
+            camera={{ position: [0, 0, 5.2], rotation: [0, 0, 5.2], fov: 60 }}
+          >
+            <color attach="background" args={['#020617']} />
+            <fog attach="fog" args={['#030712', 7, 15]} />
+
+            {/* Camera setup */}
+            <PerspectiveCamera makeDefault position={[0, 2, 4.2]} rotation={[-0.32, -4, -4]} />
+
+            {/* Lighting for the scene */}
+            <SceneLights />
+
+            {/* Web developer desk GLB model */}
+            <RotatingCube interactionEnabled={interactionEnabled} />
+
+            <group position={[0, -.25, 0]}>
+              <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+                <circleGeometry args={[3.2, 72]} />
+                <meshStandardMaterial
+                  color="#6b1f2d"
+                  roughness={0.96}
+                  metalness={0.02}
+                />
+              </mesh>
+              <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
+                <ringGeometry args={[2.32, 2.7, 72]} />
+                <meshStandardMaterial
+                  color="#c0841a"
+                  roughness={0.9}
+                  metalness={0.04}
+                />
+              </mesh>
+              <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.008, 0]}>
+                <circleGeometry args={[1.24, 72]} />
+                <meshStandardMaterial
+                  color="#7f1d1d"
+                  roughness={0.93}
+                  metalness={0.02}
+                />
+              </mesh>
+            </group>
+
+            {/* Orbit controls - allows user to rotate/zoom the scene */}
+            <OrbitControls
+              enableZoom={interactionEnabled}
+              enablePan={interactionEnabled}
+              enableRotate={interactionEnabled}
+              autoRotate={!interactionEnabled}
+              autoRotateSpeed={0.4}
+              minDistance={3.3}
+              maxDistance={8.2}
+            />
+          </Canvas>
+        </div>
       </div>
     </section>
   );

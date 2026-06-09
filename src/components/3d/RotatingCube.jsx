@@ -36,38 +36,17 @@ function DeskModel({ active, hovered }) {
     });
   }, [active, hovered, clonedScene]);
 
-  return <primitive object={clonedScene} scale={1.45} position={[0, 0.1, 0]} />;
+  return <primitive object={clonedScene} scale={1.36} position={[0, -0.16, 0]} />;
 }
 
-// Displays a licensed GLB figure model when present, and falls back to a placeholder.
+// Displays only the GLB desk model for a consistent portfolio showcase.
 function RotatingCube({ interactionEnabled = true }) {
   const objectRef = useRef();
   const [hovered, setHovered] = useState(false);
   const [active, setActive] = useState(false);
-  const [modelExists, setModelExists] = useState(false);
   const { viewport } = useThree();
 
-  const responsiveScale = viewport.width < 4.5 ? 0.8 : viewport.width < 7 ? 0.95 : 1.05;
-
-  useEffect(() => {
-    let mounted = true;
-
-    fetch(MODEL_URL, { method: 'HEAD' })
-      .then((response) => {
-        if (mounted) {
-          setModelExists(response.ok);
-        }
-      })
-      .catch(() => {
-        if (mounted) {
-          setModelExists(false);
-        }
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const responsiveScale = viewport.width < 4.5 ? 0.78 : viewport.width < 7 ? 0.92 : 1.02;
 
   // This hook runs every frame (60 times per second)
   useFrame((state) => {
@@ -80,7 +59,7 @@ function RotatingCube({ interactionEnabled = true }) {
       objectRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.05) * 0.08;
 
       const pulse = 1 + Math.sin(state.clock.elapsedTime * 1.6) * 0.012;
-      const baseScale = active ? 1.12 : 1;
+      const baseScale = active ? 1.08 : 1;
       objectRef.current.scale.setScalar(baseScale * pulse * responsiveScale);
     }
   });
@@ -93,20 +72,7 @@ function RotatingCube({ interactionEnabled = true }) {
       onPointerOut={() => interactionEnabled && setHovered(false)}
       onClick={() => interactionEnabled && setActive((prev) => !prev)}
     >
-      {modelExists ? (
-        <DeskModel active={active} hovered={hovered} />
-      ) : (
-        <mesh position={[0, 1.2, 0]}>
-          <capsuleGeometry args={[0.55, 1.7, 10, 18]} />
-          <meshStandardMaterial
-            color={active ? '#f59e0b' : hovered ? '#7dd3fc' : '#8b9dcf'}
-            emissive={active ? '#7c2d12' : '#111827'}
-            emissiveIntensity={active ? 0.25 : 0.12}
-            metalness={0.4}
-            roughness={0.45}
-          />
-        </mesh>
-      )}
+      <DeskModel active={active} hovered={hovered} />
     </group>
   );
 }

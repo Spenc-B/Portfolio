@@ -36,7 +36,7 @@ A **fully functional 3D Portfolio** built with **React** and **Three.js** that t
 ├── 📦 Source Code (src/)
 │   ├── App.jsx               ← Main component
 │   ├── main.jsx              ← Entry point
-│   ├── index.css             ← Global styles
+│   ├── index.scss            ← Global styles
 │   │
 │   └── components/
 │       ├── ui/               ← 🟢 UI Components
@@ -347,7 +347,7 @@ Navigate to `http://localhost:3000`
 
 ### 2. **Customize**
 
-- Change colors in `index.css`
+- Change colors in `index.scss`
 - Add your own skills to `SkillsSection.jsx`
 - Update text in `HeroSection.jsx`
 
